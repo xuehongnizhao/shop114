@@ -8,7 +8,7 @@ PODS:
   - Reachability (3.1.1)
   - RMDateSelectionViewController (1.4.3)
   - SDWebImage (3.7.1):
-    - SDWebImage/Core
+    - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
   - SVProgressHUD (1.1.2)
 
@@ -23,14 +23,14 @@ DEPENDENCIES:
   - SVProgressHUD (~> 1.0)
 
 SPEC CHECKSUMS:
-  AXRatingView: 4f6d6c96f6d0efc1deaa6cf493dbb1ffcfa79e55
-  IQKeyboardManager: 4e83eef847c6f5edbd670284e50c7e3d643ebdb5
-  MKNetworkKit: 83e6296a8d42e98a71880424a889773654846d74
-  NYSegmentedControl: 74094b886a80bfc4e9f6d415601e9b11797b22b7
-  RDVTabBarController: c1c826e2d2f2e26a5221e425a646d295b9dfe936
-  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
-  RMDateSelectionViewController: ae40905ee3cc7b66bc3291461be7aa7dd17edf4c
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
+  AXRatingView: ccaadc1bbda99a4b7e1d556059482d2b933a9f4e
+  IQKeyboardManager: 6aeae6a2014d66461c48f6753dd693e92eaf6524
+  MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
+  NYSegmentedControl: c24774be62ed17442595d33f74e6eb23bcff3412
+  RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
+  Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
+  RMDateSelectionViewController: 5c0e7a210077fe1b23aaf2b2b305aac3356396f0
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  SVProgressHUD: 3afb875b9eb23acd1bed9b82495695c68621a8b2
 
-COCOAPODS: 0.34.2
+COCOAPODS: 0.37.2

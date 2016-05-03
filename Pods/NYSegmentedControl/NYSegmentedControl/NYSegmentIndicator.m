@@ -44,7 +44,7 @@
 #pragma mark - Getters and Setters
 
 - (void)setBorderColor:(UIColor *)borderColor {
-    self.layer.borderColor =[borderColor CGColor];
+    self.layer.borderColor = [borderColor CGColor];
 }
 
 - (UIColor *)borderColor {

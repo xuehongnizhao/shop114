@@ -15,7 +15,8 @@
 //#define baseUrl  @"121.43.103.195:8088"
 //#define baseUrl @"115.28.23.237"
 //#define baseUrl @"121.42.194.206:8083/life114"
-#define baseUrl @"manager.114lives.com"
+//#define baseUrl @"manager.114lives.com"
+#define baseUrl @"192.168.1.141/life114"
 //还要去defaultname.h   70 行   修改 url的长度。
 //#define baseUrl  @"o2o.youzhiapp.com"
 #define base_set @"base_set/ac_base"

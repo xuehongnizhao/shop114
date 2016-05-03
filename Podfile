@@ -1,5 +1,4 @@
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '7.0'
+
 pod 'MKNetworkKit', '~> 0.87'
 pod 'SDWebImage', '~> 3.7.1'
 pod 'SVProgressHUD', '~> 1.0'

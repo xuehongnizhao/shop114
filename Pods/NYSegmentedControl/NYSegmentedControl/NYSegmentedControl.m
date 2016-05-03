@@ -125,7 +125,6 @@
         } else {
             segment.titleLabel.font = self.titleFont; 
             segment.titleLabel.textColor = self.titleTextColor;
-            
         }
     }
 

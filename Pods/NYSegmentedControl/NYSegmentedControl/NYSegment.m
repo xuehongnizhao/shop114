@@ -39,6 +39,4 @@ static CGFloat const kMinimumSegmentWidth = 68.0f;
     return CGSizeMake(MAX(sizeThatFits.width * 1.4f, kMinimumSegmentWidth), sizeThatFits.height);
 }
 
-
-
 @end

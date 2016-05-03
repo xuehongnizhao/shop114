@@ -21,8 +21,6 @@
 {
     [SVProgressHUD dismiss];
     
-   // self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;//设置bar的风格，控制字体颜色
-
     self.view.backgroundColor=[UIColor whiteColor];
     
 }
