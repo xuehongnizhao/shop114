@@ -154,7 +154,7 @@
     NSDateComponents *components = [calendar components:NSDayCalendarUnit fromDate:today toDate:beforday options:0];
     //    NSDateComponents *components = [calendar components:NSMonthCalendarUnit|NSDayCalendarUnit fromDate:today toDate:beforday options:0];
     NSInteger day = [components day];//两个日历之间相差多少月//    NSInteger days = [components day];//两个之间相差几天
-    return day;
+    return (int)day;
 }
 
 
@@ -168,7 +168,7 @@
                                                    NSMonthCalendarUnit |
                                                    NSDayCalendarUnit |
                                                    NSWeekdayCalendarUnit) fromDate:self];
-    return weekIntValue = [comps weekday];
+    return weekIntValue = (int)[comps weekday];
 }
 
 

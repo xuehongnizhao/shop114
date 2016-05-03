@@ -62,7 +62,7 @@
             if (model.holiday) {
                 day_lab.text = model.holiday;
             }else{
-                day_lab.text = [NSString stringWithFormat:@"%d",model.day];
+                day_lab.text = [NSString stringWithFormat:@"%ld",model.day];
             }
             
             day_lab.textColor = COLOR_THEME;
@@ -77,7 +77,7 @@
                 day_lab.text = model.holiday;
                 day_lab.textColor = [UIColor orangeColor];
             }else{
-                day_lab.text = [NSString stringWithFormat:@"%d",model.day];
+                day_lab.text = [NSString stringWithFormat:@"%ld",model.day];
                 day_lab.textColor = COLOR_THEME;
             }
             
@@ -92,7 +92,7 @@
                 day_lab.text = model.holiday;
                 day_lab.textColor = [UIColor orangeColor];
             }else{
-                day_lab.text = [NSString stringWithFormat:@"%d",model.day];
+                day_lab.text = [NSString stringWithFormat:@"%ld",model.day];
                 day_lab.textColor = COLOR_THEME1;
             }
             
@@ -102,7 +102,7 @@
             
         case CellDayTypeClick://被点击的日期
             [self hidden_NO];
-            day_lab.text = [NSString stringWithFormat:@"%d",model.day];
+            day_lab.text = [NSString stringWithFormat:@"%ld",model.day];
             day_lab.textColor = [UIColor whiteColor];
             day_title.text = model.Chinese_calendar;
             imgview.hidden = NO;

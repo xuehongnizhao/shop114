@@ -143,7 +143,7 @@ static NSString *DayCell = @"DayCell";
         CalendarDayModel *model = [month_Array objectAtIndex:15];
 
         CalendarMonthHeaderView *monthHeader = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:MonthHeader forIndexPath:indexPath];
-        monthHeader.masterLabel.text = [NSString stringWithFormat:@"%d年 %d月",model.year,model.month];//@"日期";
+        monthHeader.masterLabel.text = [NSString stringWithFormat:@"%ld年 %ld月",model.year,model.month];//@"日期";
         monthHeader.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8f];
         reusableview = monthHeader;
     }

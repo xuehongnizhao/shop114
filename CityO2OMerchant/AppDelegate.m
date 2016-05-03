@@ -160,7 +160,7 @@ fetchCompletionHandler:
     [APService handleRemoteNotification:userInfo];
     NSLog(@"收到通知:%@", [self logDic:userInfo]);
     if (application.applicationState == UIApplicationStateActive) {
-        NSString *string = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+//        NSString *string = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"您有新的订单,请注意查看"
                                                            delegate:self

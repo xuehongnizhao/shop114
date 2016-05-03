@@ -132,7 +132,7 @@
 #pragma mark - Web Service
 -(void)getSalesListFromNetWork
 {
-#warning 12.8 修复当typeStr为空时，程序会崩溃。 by CC
+#pragma mark --- 12.8 修复当typeStr为空时，程序会崩溃。 by CC
     if (_typeStr == nil || [_typeStr isEqualToString:@""] == YES) {
         [SVProgressHUD showErrorWithStatus:@"暂无数据"];
         [self.saleTableView headerEndRefreshing];// 结束刷新状态

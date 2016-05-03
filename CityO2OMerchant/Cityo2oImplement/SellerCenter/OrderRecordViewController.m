@@ -110,7 +110,7 @@
         {
             [SVProgressHUD showSuccessWithStatus:param[@"message"]];
             NSString* tempStr=[param[@"obj"] objectForKey:@"shop_status"];
-#warning 12.8 当没有数据，抛出错误。否则会崩溃  by CC
+#pragma mark --- 当没有数据，抛出错误。否则会崩溃  by CC
             if (tempStr == nil || [tempStr isEqualToString:@""] == YES) {
                 [SVProgressHUD showErrorWithStatus:@"没有订单记录"];
                 return;
