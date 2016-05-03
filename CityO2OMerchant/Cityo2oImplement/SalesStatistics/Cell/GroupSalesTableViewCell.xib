@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="73" id="KGk-i7-Jjw" customClass="GroupSalesTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金汉斯团购二人餐" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQs-LD-Tro">
+                        <rect key="frame" x="10" y="8" width="302" height="21"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="nlS-ct-91Y"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="价格:98元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkz-2b-Rxm">
+                        <rect key="frame" x="10" y="26" width="302" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费 20   已售 88" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJt-vb-kR7">
+                        <rect key="frame" x="10" y="44" width="302" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="pJt-vb-kR7" secondAttribute="bottom" constant="-0.5" id="LrE-QT-dFb"/>
+                    <constraint firstItem="fkz-2b-Rxm" firstAttribute="trailing" secondItem="pJt-vb-kR7" secondAttribute="trailing" id="NvT-kB-E0e"/>
+                    <constraint firstItem="aQs-LD-Tro" firstAttribute="trailing" secondItem="fkz-2b-Rxm" secondAttribute="trailing" id="Q5P-Le-zXa"/>
+                    <constraint firstItem="pJt-vb-kR7" firstAttribute="top" secondItem="aQs-LD-Tro" secondAttribute="bottom" constant="15" id="Sye-6o-mSd"/>
+                    <constraint firstItem="aQs-LD-Tro" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="a6N-XN-8Wn"/>
+                    <constraint firstItem="pJt-vb-kR7" firstAttribute="leading" secondItem="fkz-2b-Rxm" secondAttribute="leading" id="g6f-Hy-xli"/>
+                    <constraint firstItem="fkz-2b-Rxm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lfi-h6-fH2"/>
+                    <constraint firstItem="fkz-2b-Rxm" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="nmS-hD-O6B"/>
+                    <constraint firstItem="fkz-2b-Rxm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="18" id="q5W-Qp-lab"/>
+                    <constraint firstItem="aQs-LD-Tro" firstAttribute="leading" secondItem="fkz-2b-Rxm" secondAttribute="leading" id="qeu-BB-EEN"/>
+                    <constraint firstItem="aQs-LD-Tro" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="vW4-M7-NhJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="gourPriceLabel" destination="fkz-2b-Rxm" id="H2T-3v-9SJ"/>
+                <outlet property="groupNameLabel" destination="aQs-LD-Tro" id="Osm-4T-bgW"/>
+                <outlet property="saleInfoLabel" destination="pJt-vb-kR7" id="pZ6-Km-V8v"/>
+            </connections>
+            <point key="canvasLocation" x="340" y="368.5"/>
+        </tableViewCell>
+    </objects>
+</document>

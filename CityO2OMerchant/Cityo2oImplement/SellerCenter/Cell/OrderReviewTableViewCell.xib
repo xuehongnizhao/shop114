@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="reviewCell" rowHeight="70" id="KGk-i7-Jjw" customClass="OrderReviewTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小吴的本地商家" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPW-gz-cLP">
+                        <rect key="frame" x="10" y="8" width="98" height="17"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="这家店还阔以。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="302" translatesAutoresizingMaskIntoConstraints="NO" id="BPG-JU-Nrl">
+                        <rect key="frame" x="10" y="25" width="302" height="25"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="2014-12-16" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaC-wy-bGl">
+                        <rect key="frame" x="10" y="53" width="76" height="17"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.65490196079999996" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="外卖" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJb-Gd-1Sw">
+                        <rect key="frame" x="98" y="53" width="28" height="17"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.65490196078431373" green="0.65098039215686276" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lzf-Ly-utR" customClass="AXRatingView">
+                        <rect key="frame" x="234" y="12" width="78" height="14"/>
+                        <animations/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                        </accessibility>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="78" id="OnA-Bc-sa2"/>
+                            <constraint firstAttribute="height" constant="14" id="vD0-26-MOq"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="BPG-JU-Nrl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="0HR-Ix-ri1"/>
+                    <constraint firstItem="YaC-wy-bGl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="640-D8-wc9"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="YaC-wy-bGl" secondAttribute="bottom" constant="-8" id="7t7-aa-23H"/>
+                    <constraint firstItem="BPG-JU-Nrl" firstAttribute="top" secondItem="IPW-gz-cLP" secondAttribute="bottom" id="Adn-o4-Q3U"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="BPG-JU-Nrl" secondAttribute="bottom" constant="12" id="Dgp-Zs-qdP"/>
+                    <constraint firstItem="BPG-JU-Nrl" firstAttribute="top" secondItem="Lzf-Ly-utR" secondAttribute="bottom" constant="3" id="JU9-gT-ctZ"/>
+                    <constraint firstItem="oJb-Gd-1Sw" firstAttribute="top" secondItem="IPW-gz-cLP" secondAttribute="bottom" constant="20" id="Nfa-y8-J8P"/>
+                    <constraint firstItem="Lzf-Ly-utR" firstAttribute="leading" secondItem="IPW-gz-cLP" secondAttribute="trailing" constant="8" id="PGS-Od-a2N"/>
+                    <constraint firstItem="oJb-Gd-1Sw" firstAttribute="leading" secondItem="YaC-wy-bGl" secondAttribute="trailing" constant="13" id="RL8-wH-qvd"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="oJb-Gd-1Sw" secondAttribute="trailing" constant="152" id="RWH-aD-RYE"/>
+                    <constraint firstItem="BPG-JU-Nrl" firstAttribute="top" secondItem="IPW-gz-cLP" secondAttribute="bottom" id="WWb-C3-vKH"/>
+                    <constraint firstItem="Lzf-Ly-utR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="WWk-Cv-KPq"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="oJb-Gd-1Sw" secondAttribute="bottom" constant="-8" id="bHE-wk-hAT"/>
+                    <constraint firstItem="IPW-gz-cLP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="e4x-jD-U15"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Lzf-Ly-utR" secondAttribute="trailing" id="j0e-lV-frb"/>
+                    <constraint firstItem="BPG-JU-Nrl" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="j8C-Gr-h8v"/>
+                    <constraint firstItem="oJb-Gd-1Sw" firstAttribute="leading" secondItem="YaC-wy-bGl" secondAttribute="trailing" constant="13" id="mPN-MO-tWw"/>
+                    <constraint firstItem="IPW-gz-cLP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="qGw-6g-Q2Q"/>
+                    <constraint firstItem="YaC-wy-bGl" firstAttribute="top" secondItem="IPW-gz-cLP" secondAttribute="bottom" constant="20" id="v0l-bQ-zbK"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="JU9-gT-ctZ"/>
+                        <exclude reference="v0l-bQ-zbK"/>
+                        <exclude reference="Nfa-y8-J8P"/>
+                        <exclude reference="RWH-aD-RYE"/>
+                        <exclude reference="PGS-Od-a2N"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="addTimeLabel" destination="YaC-wy-bGl" id="91A-Uk-ofz"/>
+                <outlet property="reviewLabel" destination="BPG-JU-Nrl" id="LbK-1Y-2vW"/>
+                <outlet property="starRatingControl" destination="Lzf-Ly-utR" id="VsH-rr-ENr"/>
+                <outlet property="typeLabel" destination="oJb-Gd-1Sw" id="QTS-D8-Qhl"/>
+                <outlet property="userNameLabel" destination="IPW-gz-cLP" id="Kb5-fU-SLV"/>
+            </connections>
+            <point key="canvasLocation" x="265" y="366"/>
+        </tableViewCell>
+    </objects>
+</document>

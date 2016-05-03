@@ -1,0 +1,25 @@
+//
+//  CityO2OMerchantPch.pch
+//  CityO2OMerchant
+//
+//  Created by Sky on 15/3/9.
+//  Copyright (c) 2015年 Sky. All rights reserved.
+//
+
+#ifndef CityO2OMerchant_CityO2OMerchantPch_pch
+#define CityO2OMerchant_CityO2OMerchantPch_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+    #import "UIView+AutoLayout.h"
+    #import "macro.h"
+    #import "WebPort.h"
+    #import "defaultName.h"
+    #import "UZCommonMethod.h"
+    #import "JSONOfNetWork.h"
+    #import "Base64Tool.h"
+    #import <SVProgressHUD.h>
+    #import <UIImageView+WebCache.h>
+
+#endif
