@@ -64,7 +64,8 @@
 
 
 //获取相应的url 本地27 21 远程 21
-#define connect_url(key) [[[[[JSONOfNetWork getDictionaryFromPlist] objectForKey:@"obj"]objectForKey:@"api"]objectForKey:key] substringFromIndex:28]
+//#define connect_url(key) [[[[[JSONOfNetWork getDictionaryFromPlist] objectForKey:@"obj"]objectForKey:@"api"]objectForKey:key] substringFromIndex:28]
+#define connect_url(key) [[[[[JSONOfNetWork getDictionaryFromPlist] objectForKey:@"obj"]objectForKey:@"api"]objectForKey:key] substringFromIndex:29]
 //获取NSUserDefault中的数据
 #define userDefault(key) [[NSUserDefaults standardUserDefaults] objectForKey:key]
 

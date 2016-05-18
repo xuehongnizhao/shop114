@@ -122,7 +122,7 @@
 -(void)confirmOrderwithOrderType:(NSString*)typeStr CompletionBlock:(completionBlock) block
 {
     NSDictionary* dict=@{
-                         @"app_key":ConfirmOrder,
+                         @"app_key":ConfirmOrder, 
                          @"order_id":self.module.order_id,
                          @"type":typeStr
                          };

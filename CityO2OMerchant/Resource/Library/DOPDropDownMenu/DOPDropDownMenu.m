@@ -241,10 +241,12 @@
 - (CGSize)calculateTitleSizeWithString:(NSString *)string
 {
     CGFloat fontSize = 14.0;
+    NSLog(@"%@",string);
     NSDictionary *dic = @{NSFontAttributeName: [UIFont systemFontOfSize:fontSize]};
     CGSize size = [string boundingRectWithSize:CGSizeMake(280, 0) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
     return size;
 }
+
 
 #pragma mark - gesture handle
 - (void)menuTapped:(UITapGestureRecognizer *)paramSender {

@@ -100,7 +100,7 @@
     //把TestPlist文件加入
     
     NSString *plistPath = [filePath stringByAppendingPathComponent:@"totalUrl.plist"];
-    
+    NSLog(@"%@",plistPath);
     if ([fm fileExistsAtPath:plistPath])
     {
         NSLog(@"plist文件已找到,返回各个文件接口");

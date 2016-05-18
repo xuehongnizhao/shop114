@@ -25,7 +25,7 @@
              NSDictionary* dic=nil;
              if (base64==YES)
              {
-                              dic=[NSJSONSerialization JSONObjectWithData:[Base64 decodeData:param] options:NSJSONReadingMutableContainers error:nil];
+                dic=[NSJSONSerialization JSONObjectWithData:[Base64 decodeData:param] options:NSJSONReadingMutableContainers error:nil];
              }
              else
              {

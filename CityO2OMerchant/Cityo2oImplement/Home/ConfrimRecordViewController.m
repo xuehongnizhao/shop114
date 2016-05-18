@@ -20,7 +20,7 @@
 
 @property(nonatomic,strong)UITableView* productTableView;
 
-@property(nonatomic,strong)NSArray* productTypeArray;
+@property(nonatomic,strong)NSMutableArray* productTypeArray;
 
 @property(nonatomic,strong)NSArray* dateArray;
 
@@ -37,15 +37,19 @@
 
 @implementation ConfrimRecordViewController
 
+- (NSMutableArray *)productTypeArray{
+    if (!_productTypeArray) {
+      _productTypeArray=[NSMutableArray arrayWithArray:@[@{@"type_name":@"all",@"type_value":@"全部"},@{@"type_name":@"group",@"type_value":@"团购"},@{@"type_name":@"spike",@"type_value":@"优惠券"}]];
+    }
+    return _productTypeArray;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 
-    
     [self setNavBarTitle:@"验证记录" withFont:20];
-
-    _productTypeArray=@[@"全部",@"团购",@"优惠券"];
+    
+    [self getShopRoot];
     
     _typeStr=@"all";
     
@@ -58,8 +62,7 @@
     [self setBackButton];
     
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
-    
-    
+
     [self createDropDownMenu];
     
     [self getRecordListFromNetWork];
@@ -68,6 +71,34 @@
     
     [self setupViewsAndAutolayout];
     
+}
+-(void)getShopRoot
+{
+    NSDictionary* dict=@{
+                         @"app_key":SHOPROOT,
+                         @"shop_id":userDefault(userUid),
+                         };
+    [SVProgressHUD showWithStatus:@"查询记录中"];
+    
+    [Base64Tool postSomethingToServe:SHOPROOT andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
+        
+        if ([param[@"code"] integerValue]==200)
+        {
+            [SVProgressHUD showSuccessWithStatus:param[@"message"]];
+            
+            NSArray* tempArray=[param[@"obj"] objectForKey:@"SJQX"];
+            
+#pragma mark ---2016.5 需要修改一下
+            [self.productTypeArray addObject: tempArray];
+            
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:param[@"message"]];
+        }
+    } andErrorBlock:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
+    }];
 }
 #pragma mark - setupviews and autolayout
 -(void)setupViewsAndAutolayout
@@ -102,6 +133,7 @@
                          };
     [SVProgressHUD showWithStatus:@"查询记录中"];
     [Base64Tool postSomethingToServe:ConfirmRecord andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
+        
         if ([param[@"code"] integerValue]==200)
         {
             [SVProgressHUD showSuccessWithStatus:param[@"message"]];
@@ -165,7 +197,12 @@
 
 - (NSString *)menu:(DOPDropDownMenu *)menu titleForRowAtIndexPath:(DOPIndexPath *)indexPath {
     switch (indexPath.column) {
-        case 0: return self.productTypeArray[indexPath.row];
+
+        case 0:{
+            NSDictionary *dic=self.productTypeArray[indexPath.row];
+            return [dic allValues][0];
+        }
+          
             break;
         case 1: return self.dateArray[indexPath.row];
             break;
@@ -210,11 +247,12 @@
     NSString* title=[menu titleForRowAtIndexPath:indexPath];
     if (indexPath.column==0)
     {
-        if ([title isEqualToString:@"全部"]) _typeStr=@"all";
-        
-        if ([title isEqualToString:@"团购"]) _typeStr=@"group";
-        
-        if ([title isEqualToString:@"优惠券"]) _typeStr=@"spike";
+        for (NSDictionary *rootDic in self.productTypeArray) {
+            if ([title isEqualToString:[rootDic allValues][0]]) {
+                _typeStr=[rootDic allKeys][0];
+                
+            }
+        }
     }
     
     //重新获取

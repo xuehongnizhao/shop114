@@ -104,5 +104,19 @@
  *  销售详情
  */
 #define ORDER_INFO          connect_url(@"order_infomation")
+/**
+ *  @author zq, 16-05-18 10:05:46
+ *
+ *  商家权限
+ */
+
+#define SHOPROOT            connect_url(@"as_shop_root")
+
+/**
+ *  @author zq, 16-05-18 13:05:18
+ *
+ *  999商家
+ */
+#define Goods999Confirm     connect_url(@"as_consumer_code")
 
 #endif

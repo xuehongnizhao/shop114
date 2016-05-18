@@ -137,29 +137,58 @@
 
 -(void)confrimPassCode:(NSString*) code
 {
-    NSDictionary* dict=@{
-                         @"app_key":ConfirmPassCode,
-                         @"pass":code,
-                         @"shop_id":userDefault(userUid)
-                         };
-    [SVProgressHUD showWithStatus:@"验证中..." maskType:SVProgressHUDMaskTypeBlack];
-    [Base64Tool postSomethingToServe:ConfirmPassCode andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
-        if ([param[@"code"] integerValue]==200)
-        {
-            [SVProgressHUD showSuccessWithStatus:param[@"message"]];
-            self.checkTextField.text=@"";
-            ConfirmCodeModule* module=[ConfirmCodeModule objectWithKeyValues:param[@"obj"]];
-            ConfirmResultViewController* crvc=[[ConfirmResultViewController alloc]initWithNibName:NSStringFromClass([ConfirmResultViewController class]) bundle:nil];
-            crvc.codeModule=module;
-            [self.navigationController pushViewController:crvc animated:YES];
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:param[@"message"]];
-        }
-    } andErrorBlock:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
-    }];
+    NSString *string=[code substringToIndex:3];
+    if ([string isEqualToString:@"999"]) {
+        NSDictionary* dict=@{
+                             @"app_key":Goods999Confirm,
+                             @"pass":code,
+                             @"shop_id":userDefault(userUid)
+                             };
+        [SVProgressHUD showWithStatus:@"验证中..." maskType:SVProgressHUDMaskTypeBlack];
+        [Base64Tool postSomethingToServe:Goods999Confirm andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
+            if ([param[@"code"] integerValue]==200)
+            {
+                [SVProgressHUD showSuccessWithStatus:param[@"message"]];
+                self.checkTextField.text=@"";
+                ConfirmCodeModule* module=[ConfirmCodeModule objectWithKeyValues:param[@"obj"]];
+                ConfirmResultViewController* crvc=[[ConfirmResultViewController alloc]initWithNibName:NSStringFromClass([ConfirmResultViewController class]) bundle:nil];
+                crvc.codeModule=module;
+                [self.navigationController pushViewController:crvc animated:YES];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:param[@"message"]];
+            }
+        } andErrorBlock:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
+        }];
+
+    }else{
+        NSDictionary* dict=@{
+                             @"app_key":ConfirmPassCode,
+                             @"pass":code,
+                             @"shop_id":userDefault(userUid)
+                             };
+        [SVProgressHUD showWithStatus:@"验证中..." maskType:SVProgressHUDMaskTypeBlack];
+        [Base64Tool postSomethingToServe:ConfirmPassCode andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
+            if ([param[@"code"] integerValue]==200)
+            {
+                [SVProgressHUD showSuccessWithStatus:param[@"message"]];
+                self.checkTextField.text=@"";
+                ConfirmCodeModule* module=[ConfirmCodeModule objectWithKeyValues:param[@"obj"]];
+                ConfirmResultViewController* crvc=[[ConfirmResultViewController alloc]initWithNibName:NSStringFromClass([ConfirmResultViewController class]) bundle:nil];
+                crvc.codeModule=module;
+                [self.navigationController pushViewController:crvc animated:YES];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:param[@"message"]];
+            }
+        } andErrorBlock:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
+        }];
+
+    }
     
 }
 

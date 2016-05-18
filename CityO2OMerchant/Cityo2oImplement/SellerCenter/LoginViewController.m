@@ -84,6 +84,7 @@
         if ([param[@"code"] integerValue]==200)
         {
             [SVProgressHUD showSuccessWithStatus:param[@"message"]];
+            NSLog(@"%@",param);
             [[NSUserDefaults standardUserDefaults] setObject:[param[@"obj"] objectForKey:@"shop_id"]forKey:userUid];
             [[NSUserDefaults standardUserDefaults] setObject:[param[@"obj"] objectForKey:@"shop_name"]forKey:shopName];
             [[NSUserDefaults standardUserDefaults] setObject:[param[@"obj"] objectForKey:@"shop_pic"]forKey:userPic];
