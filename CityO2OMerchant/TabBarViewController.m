@@ -39,8 +39,8 @@
 #pragma mark -setupViewControllers
 -(void)setupViewControllers
 {
-    NSArray* controllerNames=@[@"HomeViewController",
-                               @"OrderHandleViewController",
+    NSArray* controllerNames=@[@"OrderHandleViewController",
+                               @"HomeViewController",
                                @"SalesStatisticsViewController",
                                @"SellerCenterViewController",
                                ];
@@ -123,9 +123,9 @@
     
     
     //设置选中图片
-    NSArray *tabBarItemImages = @[@"tabbar_home", @"tabbar_order", @"tabbar_sales",@"tabbar_indiv"];
+    NSArray *tabBarItemImages = @[@"tabbar_order", @"tabbar_home", @"tabbar_sales",@"tabbar_indiv"];
     
-    NSArray* tabBarItemNames = @[@"首页",@"订单处理",@"销售统计",@"商户中心"];
+    NSArray* tabBarItemNames = @[@"订单处理",@"验码",@"销售统计",@"商户中心"];
     
     NSInteger index = 0;
     for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {

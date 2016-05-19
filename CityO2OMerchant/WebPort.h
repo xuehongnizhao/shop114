@@ -125,5 +125,18 @@
  *  999消费码确认
  */
 #define Confirm999Consume   connect_url(@"as_consumer_code_reco")
+/**
+ *  @author zq, 16-05-19 09:05:09
+ *
+ *  999商家验证记录列表
+ */
+#define Verify999RecordList connect_url(@"as_veri_record")
+/**
+ *  @author zq, 16-05-19 13:05:27
+ *
+ *  商家订单处理
+ */
+
+#define ProcessedOrders      connect_url(@"as_order_proce")
 
 #endif

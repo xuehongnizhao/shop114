@@ -35,12 +35,6 @@
 
 @implementation ConfrimRecordViewController
 
-//- (NSMutableArray *)productTypeArray{
-//    if (!_productTypeArray) {
-//      _productTypeArray=[NSMutableArray arrayWithArray:@[@{@"type_name":@"all",@"type_value":@"全部"},@{@"type_name":@"group",@"type_value":@"团购"},@{@"type_name":@"spike",@"type_value":@"优惠券"}]];
-//    }
-//    return _productTypeArray;
-//}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -62,6 +56,7 @@
     [self createDropDownMenu];
     
     [self getRecordListFromNetWork];
+
     
     [self setTableviewSeparatorInset];
     
@@ -91,6 +86,7 @@
 #pragma mark - Web Service
 -(void)getRecordListFromNetWork
 {
+
     NSDictionary* dict=@{
                          @"app_key":ConfirmRecord,
                          @"shop_id":userDefault(userUid),
@@ -104,7 +100,42 @@
         {
             [SVProgressHUD showSuccessWithStatus:param[@"message"]];
             NSArray* tempArray=[RecordModule objectArrayWithKeyValuesArray:[param[@"obj"] objectForKey:@"list"]];
-            [self.recordArray removeAllObjects];
+            
+            [self.recordArray addObjectsFromArray:tempArray];
+            
+            [self.productTableView reloadData];
+            /**
+             *  添加缓存
+             */
+//            创建缓存标识
+            NSString* flagStr=[NSString stringWithFormat:@"%@ %@",_typeStr,[_dateArray firstObject]];
+            [self.cacheDict setObject:tempArray forKey:flagStr];
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:param[@"message"]];
+        }
+    } andErrorBlock:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
+    }];
+        [self getRecord999ListFromNetWork];
+}
+-(void)getRecord999ListFromNetWork
+{
+    NSDictionary* dict=@{
+                         @"app_key":Verify999RecordList,
+                         @"shop_id":userDefault(userUid),
+                         @"time":[_dateArray firstObject],
+                         @"type":_typeStr,
+                         };
+    [SVProgressHUD showWithStatus:@"查询记录中"];
+    [Base64Tool postSomethingToServe:Verify999RecordList andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
+        
+        if ([param[@"code"] integerValue]==200)
+        {
+            [SVProgressHUD showSuccessWithStatus:param[@"message"]];
+            NSArray* tempArray=[RecordModule objectArrayWithKeyValuesArray:[param[@"obj"] objectForKey:@"list"]];
+            
             [self.recordArray addObjectsFromArray:tempArray];
             
             [self.productTableView reloadData];
@@ -208,14 +239,14 @@
 }
 
 - (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath {
-    NSLog(@"column:%li row:%li", (long)indexPath.column, (long)indexPath.row);
-    //NSLog(@"%@",[menu titleForRowAtIndexPath:indexPath]);
+    [self.recordArray removeAllObjects];
     NSString* title=[menu titleForRowAtIndexPath:indexPath];
     if (indexPath.column==0)
     {
         for (NSDictionary *rootDic in self.productTypeArray) {
-            if ([title isEqualToString:[rootDic allValues][0]]) {
-                _typeStr=[rootDic allKeys][0];
+            if ([title isEqualToString:[rootDic objectForKey:@"type_value"]]) {
+                _typeStr=[rootDic objectForKey:@"type_name"];
+
                 
             }
         }
@@ -225,8 +256,10 @@
     if ([self findDataSourceFromCache]==NO)
     {
         [self getRecordListFromNetWork];
+        [self.productTableView reloadData];
+        
     }
-    
+
     
 }
 

@@ -5,7 +5,7 @@
 //  Created by Sky on 15/3/9.
 //  Copyright (c) 2015年 Sky. All rights reserved.
 //
-
+//订单处理
 #import "OrderHandleViewController.h"
 #import <NYSegmentedControl.h>
 #import "OrderModule.h"
@@ -39,18 +39,18 @@ static NSString* _typeStr=@"1";
 
     [self.orderTableView headerBeginRefreshing];
     
+    self.defaultImageView.hidden=self.orderArray.count?YES:NO;
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self.navigationItem setTitleView:self.segmentedControl];
     
-    
-    //[self getOrderListFromNetWork];
-    
     [self setupViewsAndAutolayout];
+    
+    [self getOrderListFromNetWork];
     
 }
 
@@ -67,11 +67,40 @@ static NSString* _typeStr=@"1";
     [_defaultImageView autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [_defaultImageView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [_defaultImageView autoSetDimensionsToSize:CGSizeMake(220, 226)];
-    [_defaultImageView setHidden:YES];
 }
 
 
 #pragma mark - WebService
+-(void)getProcessedOrdersListFromNetWork
+{
+    
+    NSDictionary* dict=@{
+                         @"app_key":ProcessedOrders,
+                         @"shop_id":userDefault(userUid),
+                         @"type":_typeStr,
+                         };
+    [Base64Tool postSomethingToServe:ProcessedOrders andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
+        if ([param[@"code"] integerValue]==200)
+        {
+            [SVProgressHUD showSuccessWithStatus:param[@"message"]];
+            NSArray* arr=[OrderModule objectArrayWithKeyValuesArray:param[@"obj"]];
+                [self.orderArray addObjectsFromArray:arr];
+                self.defaultImageView.hidden=self.orderArray.count?YES:NO;
+                [self.orderTableView reloadData];
+            
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:param[@"message"]];
+            
+        }
+    } andErrorBlock:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
+    }];
+    
+    
+
+}
 -(void)getOrderListFromNetWork
 {
     
@@ -85,27 +114,9 @@ static NSString* _typeStr=@"1";
         {
             [SVProgressHUD showSuccessWithStatus:param[@"message"]];
             NSArray* arr=[OrderModule objectArrayWithKeyValuesArray:[param[@"obj"] objectForKey:@"list"]];
-       
-            if (arr.count!=0)
-            {
-                [self.orderArray removeAllObjects];
                 [self.orderArray addObjectsFromArray:arr];
+                self.defaultImageView.hidden=self.orderArray.count?YES:NO;
                 [self.orderTableView reloadData];
-                /**
-                 *  写入缓存字典
-                 */
-                [self.cacheDict setObject:arr forKey:_typeStr];
-                [_defaultImageView setHidden:YES];
-            }
-            else
-            {
-                [self.orderArray removeAllObjects];
-                [self.orderArray addObjectsFromArray:arr];
-                [self.orderTableView reloadData];
-                [_defaultImageView setHidden:NO];
-            }
-            
-            
         }
         else
         {
@@ -116,42 +127,18 @@ static NSString* _typeStr=@"1";
         [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
     }];
     
-    
+    [self getProcessedOrdersListFromNetWork];
     [self.orderTableView headerEndRefreshing];
-
-}
-
-
--(BOOL)getOrderListFromCache
-{
-    NSArray* arr=[self.cacheDict objectForKey:_typeStr];
     
-    if (arr.count==0)
-    {
-        [_defaultImageView setHidden:NO];
-        return NO;
-    }
-    [self.orderArray removeAllObjects];
-    [self.orderArray addObjectsFromArray:arr];
-    [_defaultImageView setHidden:YES];
-    [self.orderTableView reloadData];
-    
-    
-    [self.orderTableView headerEndRefreshing];
-
-    
-    return YES;
 }
 
 #pragma mark - segmentControl Selected
 - (void)segmentSelected
 {
-    NSLog(@"segment selected at index:%ld",_segmentedControl.selectedSegmentIndex);
     _typeStr=[NSString stringWithFormat:@"%ld",_segmentedControl.selectedSegmentIndex+1];
-    
-    //if ([self getOrderListFromCache]==YES) return;
-    
+    [self.orderArray removeAllObjects];
     [self getOrderListFromNetWork];
+    
 }
 
 #pragma mark - get color from color type
@@ -286,10 +273,15 @@ static NSString* _typeStr=@"1";
         
         __block id weakSelf=self;
         [_orderTableView addHeaderWithCallback:^{
+            [weakSelf removeOrderArrayObjects];
             [weakSelf getOrderListFromNetWork];
+    
         }];
     }
     return _orderTableView;
+}
+- (void)removeOrderArrayObjects{
+    [self.orderArray removeAllObjects];
 }
 -(NSMutableArray *)orderArray
 {

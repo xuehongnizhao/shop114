@@ -49,12 +49,12 @@
 #pragma mark 对字典设置值，用网络数据取值
 - (void)setShopStatusDictionary{
     shopStatusDic = [[NSMutableDictionary alloc] init];
-    [shopStatusDic setValue:@"支持团购：是" forKey:@"group"];
-    [shopStatusDic setValue:@"支持优惠券：是" forKey:@"spike"];
-    [shopStatusDic setValue:@"支持外卖：是" forKey:@"takeout"];
-    [shopStatusDic setValue:@"支持订座：是" forKey:@"seat"];
-    [shopStatusDic setValue:@"支持订酒店：是" forKey:@"hotel"];
-    [shopStatusDic setValue:@"支持活动：是" forKey:@"activity"];
+    [shopStatusDic setValue:@"支持：团购" forKey:@"group"];
+    [shopStatusDic setValue:@"支持：优惠券" forKey:@"spike"];
+    [shopStatusDic setValue:@"支持：外卖" forKey:@"takeout"];
+    [shopStatusDic setValue:@"支持：订座" forKey:@"seat"];
+    [shopStatusDic setValue:@"支持：订酒店" forKey:@"hotel"];
+    [shopStatusDic setValue:@"支持：活动" forKey:@"activity"];
     
     #pragma mark --- 2016.5添加商家权限
     NSArray *qxArr=[[NSUserDefaults standardUserDefaults]valueForKey:SHANGJIAQUANXIAN];
@@ -62,7 +62,7 @@
         NSLog(@"%@",qxDic);
         NSString *fullName=[qxDic objectForKey:@"type_value"];
         NSString *name=[qxDic objectForKey:@"type_name"];
-        [shopStatusDic setValue:[NSString stringWithFormat:@"支持%@：是",fullName ] forKey:name];
+        [shopStatusDic setValue:[NSString stringWithFormat:@"支持：%@",fullName ] forKey:name];
         [self.supportArray addObject:name];
     }
 }

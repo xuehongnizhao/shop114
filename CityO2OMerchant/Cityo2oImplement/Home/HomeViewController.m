@@ -68,6 +68,7 @@
     crvc.productTypeArray= self.productTypeArray;
     [self.navigationController pushViewController:crvc animated:YES];
     
+    
 }
 
 -(void)getShopRoot
@@ -249,7 +250,7 @@
     {
         _checkTextField=[[UITextField alloc]initForAutoLayout];
         _checkTextField.backgroundColor=[UIColor whiteColor];
-        _checkTextField.placeholder=@"请输入验证码";
+        _checkTextField.placeholder=@"请输入商品验证码";
         _checkTextField.rightViewMode=UITextFieldViewModeAlways;
         _checkTextField.rightView=self.clearButton;
         _checkTextField.inputView=({

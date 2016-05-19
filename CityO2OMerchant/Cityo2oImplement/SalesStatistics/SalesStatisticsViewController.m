@@ -5,7 +5,7 @@
 //  Created by Sky on 15/3/9.
 //  Copyright (c) 2015年 Sky. All rights reserved.
 //
-
+//销售统计
 #import "SalesStatisticsViewController.h"
 #import "DOPDropDownMenu.h"
 #import "MJExtension.h"
@@ -516,14 +516,14 @@
     return _cacheDict;
 }
 
-//-(NSMutableArray *)productTypeArray
-//{
-//    if (!_productTypeArray)
-//    {
-//        _productTypeArray=[[NSMutableArray alloc]init];
-//    }
-//    return _productTypeArray;
-//}
+-(NSMutableArray *)productTypeArray
+{
+    if (!_productTypeArray)
+    {
+        _productTypeArray=[[NSMutableArray alloc]init];
+    }
+    return _productTypeArray;
+}
 
 -(NSDictionary *)typeDict
 {
