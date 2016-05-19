@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderDetailViewController">
@@ -20,17 +20,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cj9-SY-DCX">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="488"/>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </webView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IwV-6y-Z5N">
                     <rect key="frame" x="0.0" y="488" width="320" height="80"/>
                     <subviews>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1m-Ef-WCH">
+                        <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1m-Ef-WCH">
                             <rect key="frame" x="20" y="25" width="105" height="30"/>
-                            <animations/>
                             <color key="backgroundColor" red="0.85490196080000003" green="0.20392156859999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="接受预定">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,9 +34,8 @@
                                 <action selector="acceptEngagePressed:" destination="-1" eventType="touchUpInside" id="DMy-nq-YFP"/>
                             </connections>
                         </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSe-op-2OC">
+                        <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSe-op-2OC">
                             <rect key="frame" x="195" y="25" width="105" height="30"/>
-                            <animations/>
                             <color key="backgroundColor" red="0.40000000000000002" green="0.71764705880000002" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="取消预定">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -52,9 +45,8 @@
                                 <action selector="cancelEngagePressed:" destination="-1" eventType="touchUpInside" id="QSD-xP-7iP"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkE-3a-Pzc">
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkE-3a-Pzc">
                             <rect key="frame" x="60" y="25" width="200" height="30"/>
-                            <animations/>
                             <color key="backgroundColor" red="0.40000000000000002" green="0.71764705880000002" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="取消订单">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -65,7 +57,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="gSe-op-2OC" firstAttribute="leading" secondItem="j1m-Ef-WCH" secondAttribute="trailing" constant="70" id="54C-v9-m7g"/>
@@ -83,8 +74,11 @@
                         <constraint firstAttribute="bottom" secondItem="gSe-op-2OC" secondAttribute="bottom" constant="25" id="xkL-jk-aSv"/>
                     </constraints>
                 </view>
+                <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cj9-SY-DCX">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="488"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </webView>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="IwV-6y-Z5N" firstAttribute="bottom" secondItem="Cj9-SY-DCX" secondAttribute="bottom" constant="80" id="2br-EX-c4w"/>

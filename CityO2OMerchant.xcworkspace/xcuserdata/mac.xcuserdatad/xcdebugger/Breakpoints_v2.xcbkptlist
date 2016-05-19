@@ -68,7 +68,7 @@
                   moduleName = "CityO2OMerchant"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/shop114/CityO2OMerchant/Cityo2oImplement/SellerCenter/ShopReviewViewController.m"
-                  timestampString = "485245348.057003"
+                  timestampString = "485316632.627249"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -83,7 +83,7 @@
                   moduleName = "CityO2OMerchant"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/shop114/CityO2OMerchant/Cityo2oImplement/SellerCenter/ShopReviewViewController.m"
-                  timestampString = "485245348.057102"
+                  timestampString = "485316632.627672"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -100,43 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CityO2OMerchant/Cityo2oImplement/Home/HomeViewController.m"
-            timestampString = "485243033.722477"
+            timestampString = "485315566.687695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "-confrimPassCode:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CityO2OMerchant/Cityo2oImplement/Home/HomeViewController.m"
-            timestampString = "485243034.138154"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-confrimPassCode:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CityO2OMerchant/Cityo2oImplement/Home/HomeViewController.m"
-            timestampString = "485243044.641717"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "-confrimPassCode:"
             landmarkType = "5">
          </BreakpointContent>

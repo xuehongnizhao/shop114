@@ -14,5 +14,5 @@
 
 
 @property(nonatomic,strong)ConfirmCodeModule* codeModule;
-
+//@property (strong, nonatomic) NSMutableArray *productTypeArray;
 @end

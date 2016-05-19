@@ -82,6 +82,7 @@
 
 #define SelectColor UIColorFromRGB(0xe64d54)
 
+#define SHANGJIAQUANXIAN    @"shangjiaquanxian"
 
 
 #endif

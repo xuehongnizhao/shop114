@@ -10,5 +10,5 @@
 #import "BaseViewController.h"
 
 @interface ConfrimRecordViewController : BaseViewController
-
+@property(nonatomic,strong)NSMutableArray* productTypeArray;
 @end

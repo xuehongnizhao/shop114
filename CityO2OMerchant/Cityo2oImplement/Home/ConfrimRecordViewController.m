@@ -20,8 +20,6 @@
 
 @property(nonatomic,strong)UITableView* productTableView;
 
-@property(nonatomic,strong)NSMutableArray* productTypeArray;
-
 @property(nonatomic,strong)NSArray* dateArray;
 
 @property(nonatomic,strong)DOPDropDownMenu* downMenu;
@@ -37,19 +35,17 @@
 
 @implementation ConfrimRecordViewController
 
-- (NSMutableArray *)productTypeArray{
-    if (!_productTypeArray) {
-      _productTypeArray=[NSMutableArray arrayWithArray:@[@{@"type_name":@"all",@"type_value":@"全部"},@{@"type_name":@"group",@"type_value":@"团购"},@{@"type_name":@"spike",@"type_value":@"优惠券"}]];
-    }
-    return _productTypeArray;
-}
+//- (NSMutableArray *)productTypeArray{
+//    if (!_productTypeArray) {
+//      _productTypeArray=[NSMutableArray arrayWithArray:@[@{@"type_name":@"all",@"type_value":@"全部"},@{@"type_name":@"group",@"type_value":@"团购"},@{@"type_name":@"spike",@"type_value":@"优惠券"}]];
+//    }
+//    return _productTypeArray;
+//}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     [self setNavBarTitle:@"验证记录" withFont:20];
-    
-    [self getShopRoot];
     
     _typeStr=@"all";
     
@@ -72,34 +68,6 @@
     [self setupViewsAndAutolayout];
     
 }
--(void)getShopRoot
-{
-    NSDictionary* dict=@{
-                         @"app_key":SHOPROOT,
-                         @"shop_id":userDefault(userUid),
-                         };
-    [SVProgressHUD showWithStatus:@"查询记录中"];
-    
-    [Base64Tool postSomethingToServe:SHOPROOT andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
-        
-        if ([param[@"code"] integerValue]==200)
-        {
-            [SVProgressHUD showSuccessWithStatus:param[@"message"]];
-            
-            NSArray* tempArray=[param[@"obj"] objectForKey:@"SJQX"];
-            
-#pragma mark ---2016.5 需要修改一下
-            [self.productTypeArray addObject: tempArray];
-            
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:param[@"message"]];
-        }
-    } andErrorBlock:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
-    }];
-}
 #pragma mark - setupviews and autolayout
 -(void)setupViewsAndAutolayout
 {
@@ -109,8 +77,6 @@
     [_productTableView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
     [_productTableView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
 }
-
-
 #pragma mark - create Drop down Menu
 -(void)createDropDownMenu
 {

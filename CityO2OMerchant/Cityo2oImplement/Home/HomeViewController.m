@@ -23,6 +23,7 @@
 
 @property(nonatomic,strong)UIButton* clearButton;
 
+@property (strong, nonatomic)NSMutableArray *productTypeArray;
 @end
 
 @implementation HomeViewController
@@ -37,14 +38,14 @@
     // Do any additional setup after loading the view.
     [self setNavBarTitle:@"验证" withFont:20];
     
-    
+    [self getShopRoot];
     [self setupViews];
     
     [self setRecordButton];
     
     [self setScanButton];
     
-    
+
     self.view.backgroundColor=UIColorFromRGB(0xf9f9f9);
 }
 
@@ -64,9 +65,38 @@
 -(void)readRecord
 {
     ConfrimRecordViewController * crvc=[[ConfrimRecordViewController alloc]init];
+    crvc.productTypeArray= self.productTypeArray;
     [self.navigationController pushViewController:crvc animated:YES];
+    
 }
 
+-(void)getShopRoot
+{
+    NSDictionary* dict=@{
+                         @"app_key":SHOPROOT,
+                         @"shop_id":userDefault(userUid),
+                         };
+    [SVProgressHUD showWithStatus:@"查询记录中"];
+    __block NSMutableArray *tempArray;
+    [Base64Tool postSomethingToServe:SHOPROOT andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
+
+        if ([param[@"code"] integerValue]==200)
+        {
+            [SVProgressHUD showSuccessWithStatus:param[@"message"]];
+            tempArray=[NSMutableArray arrayWithArray:@[@{@"type_name":@"all",@"type_value":@"全部"},@{@"type_name":@"group",@"type_value":@"团购"},@{@"type_name":@"spike",@"type_value":@"优惠券"}]];
+
+            [tempArray addObjectsFromArray:[param[@"obj"] objectForKey:@"SJQX"]];
+            [[NSUserDefaults standardUserDefaults]setObject:[param[@"obj"] objectForKey:@"SJQX"] forKey:SHANGJIAQUANXIAN];
+            [self performSelectorOnMainThread:@selector(setProductTypeArray:) withObject:tempArray waitUntilDone:YES];
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:param[@"message"]];
+        }
+    } andErrorBlock:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
+    }];
+}
 
 -(void)setScanButton
 {

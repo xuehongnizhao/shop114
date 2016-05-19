@@ -13,7 +13,7 @@
 
 @property (strong , nonatomic) UITableView *supportTableView;
 
-@property (strong , nonatomic) NSArray *supportArray;
+@property (strong , nonatomic) NSMutableArray *supportArray;
 
 @end
 
@@ -22,6 +22,12 @@
     NSMutableDictionary *shopStatusDic;
 }
 
+- (NSMutableArray *)supportArray{
+    if (!_supportArray) {
+        _supportArray=[[NSMutableArray alloc]init];
+    }
+    return _supportArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -49,6 +55,16 @@
     [shopStatusDic setValue:@"支持订座：是" forKey:@"seat"];
     [shopStatusDic setValue:@"支持订酒店：是" forKey:@"hotel"];
     [shopStatusDic setValue:@"支持活动：是" forKey:@"activity"];
+    
+    #pragma mark --- 2016.5添加商家权限
+    NSArray *qxArr=[[NSUserDefaults standardUserDefaults]valueForKey:SHANGJIAQUANXIAN];
+    for (NSDictionary *qxDic in qxArr) {
+        NSLog(@"%@",qxDic);
+        NSString *fullName=[qxDic objectForKey:@"type_value"];
+        NSString *name=[qxDic objectForKey:@"type_name"];
+        [shopStatusDic setValue:[NSString stringWithFormat:@"支持%@：是",fullName ] forKey:name];
+        [self.supportArray addObject:name];
+    }
 }
 
 #pragma mark ----获取商家支持的服务
@@ -60,8 +76,7 @@
     [Base64Tool postSomethingToServe:shopStatus andParams:dic isBase64:YES CompletionBlock:^(id param) {
         if ([param [@"code"] integerValue] == 200) {
             shopStatusStr = [param [@"obj"] objectForKey:@"shop_status"];
-            self.supportArray = [[NSArray alloc] init];
-            self.supportArray = [shopStatusStr componentsSeparatedByString:@","];
+            [self.supportArray addObjectsFromArray:[shopStatusStr componentsSeparatedByString:@","]];
             [self.supportTableView reloadData];
             NSLog(@"array------------->>%@",self.supportArray);
         }
@@ -78,12 +93,9 @@
     [self setTableviewSeparatorInset];
     [UZCommonMethod hiddleExtendCellFromTableview:self.supportTableView];
     [self.view addSubview:self.supportTableView];
-}
+}	
 
 #pragma mark 表示图数据源方法和代理方法
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.supportArray.count;

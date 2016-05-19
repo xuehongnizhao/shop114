@@ -11,7 +11,6 @@
 
 @interface ConfirmResultViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *backImgView;
-@property (strong, nonatomic) IBOutlet UILabel *typeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *consumeCodeLabel;
 @property (strong, nonatomic) IBOutlet UITableView *productTableView;
 @property (strong, nonatomic) IBOutlet UIButton *confirmConsumeButton;
@@ -34,14 +33,14 @@
     [self setBackButton];
     
     [self setNavBarTitle:@"验证结果" withFont:20];
-    /**
-     *  cnfirm info
-     */
+    #pragma mark --- 2016.5 删除验证码的类型
+//    /**
+//     *  cnfirm info
+//     */
     _consumeCodeLabel.text=_codeModule.pass;
     _backImgView.image=[UIImage imageNamed:@"passwordbg"];
-    _typeLabel.text=[_codeModule.type isEqualToString:@"group"]?@"团购密码":@"优惠券密码";
-    _confirmConsumeButton.layer.cornerRadius=5;
-    _cancelConsumeButton.layer.cornerRadius=5;
+    _confirmConsumeButton.layer.cornerRadius=10;
+    _cancelConsumeButton.layer.cornerRadius=10;
     
     [_confirmConsumeButton setBackgroundImage:[self createImageWithColor:UIColorFromRGB(0x79c5d4)] forState:UIControlStateNormal];
     [_confirmConsumeButton setBackgroundImage:[self createImageWithColor:UIColorFromRGB(0x4ba4b9)] forState:UIControlStateSelected];
@@ -70,26 +69,50 @@
 #pragma mark -  button action
 - (IBAction)confirmConsume:(UIButton *)sender
 {
-    NSDictionary* dict=@{
-                         @"app_key":ConfirmConsume,
-                         @"type":_codeModule.type,
-                         @"pass":_codeModule.pass
-                         };
-    [SVProgressHUD showWithStatus:@"确认消费中..." maskType:SVProgressHUDMaskTypeBlack];
-    [Base64Tool postSomethingToServe:ConfirmConsume andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
-        if ([param[@"code"] integerValue]==200)
-        {
-            [SVProgressHUD showSuccessWithStatus:param[@"message"]];
-            [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:param[@"message"]];
-        }
-    } andErrorBlock:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"确认消费失败"];
-    }];
+    if ([[_codeModule.pass substringToIndex:3] isEqualToString:@"999"]) {
+        NSDictionary* dict=@{
+                             @"app_key":Confirm999Consume,
+                             @"type":_codeModule.type,
+                             @"pass":_codeModule.pass
+                             };
+        [SVProgressHUD showWithStatus:@"确认消费中..." maskType:SVProgressHUDMaskTypeBlack];
+        [Base64Tool postSomethingToServe:Confirm999Consume andParams:dict isBase64:[IS_USE_BASE64 boolValue]   CompletionBlock:^(id param) {
+            if ([param[@"code"] integerValue]==200)
+            {
+                [SVProgressHUD showSuccessWithStatus:param[@"message"]];
+                [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:param[@"message"]];
+            }
+        } andErrorBlock:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"确认消费失败"];
+        }];
+
+    }else{
+        NSDictionary* dict=@{
+                             @"app_key":ConfirmConsume,
+                            @"type":_codeModule.type,
+                             @"pass":_codeModule.pass
+                            };
+        [SVProgressHUD showWithStatus:@"确认消费中..." maskType:SVProgressHUDMaskTypeBlack];
+        [Base64Tool postSomethingToServe:ConfirmConsume andParams:dict isBase64:[IS_USE_BASE64 boolValue]   CompletionBlock:^(id param) {
+            if ([param[@"code"] integerValue]==200)
+            {
+                [SVProgressHUD showSuccessWithStatus:param[@"message"]];
+                [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:param[@"message"]];
+            }
+        } andErrorBlock:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"确认消费失败"];
+        }];
+    }
 }
 
 - (IBAction)cancelConsume:(id)sender

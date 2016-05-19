@@ -119,4 +119,11 @@
  */
 #define Goods999Confirm     connect_url(@"as_consumer_code")
 
+/**
+ *  @author zq, 16-05-19 09:05:09
+ *
+ *  999消费码确认
+ */
+#define Confirm999Consume   connect_url(@"as_consumer_code_reco")
+
 #endif

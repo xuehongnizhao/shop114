@@ -28,9 +28,9 @@
     
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
     
-    _cancelEngageButton.layer.cornerRadius=5;
-    _acceptEngaeButton.layer.cornerRadius=5;
-    _cancelOrderButton.layer.cornerRadius=5;
+    _cancelEngageButton.layer.cornerRadius=10;
+    _acceptEngaeButton.layer.cornerRadius=10;
+    _cancelOrderButton.layer.cornerRadius=10;
     
     
     [self.orderWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.module.message_url]]];

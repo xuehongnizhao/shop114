@@ -516,14 +516,14 @@
     return _cacheDict;
 }
 
--(NSMutableArray *)productTypeArray
-{
-    if (!_productTypeArray)
-    {
-        _productTypeArray=[[NSMutableArray alloc]init];
-    }
-    return _productTypeArray;
-}
+//-(NSMutableArray *)productTypeArray
+//{
+//    if (!_productTypeArray)
+//    {
+//        _productTypeArray=[[NSMutableArray alloc]init];
+//    }
+//    return _productTypeArray;
+//}
 
 -(NSDictionary *)typeDict
 {
