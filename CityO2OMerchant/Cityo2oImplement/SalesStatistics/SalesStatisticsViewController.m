@@ -43,7 +43,7 @@
 
 @property(nonatomic,strong)NSMutableDictionary* cacheDict;
 
-@property(nonatomic,strong)NSDictionary* typeDict;
+@property(nonatomic,strong)NSMutableDictionary* typeDict;
 
 @property(nonatomic,strong)NSDictionary* dataDict;
 
@@ -72,8 +72,8 @@
     [self setNavBarTitle:@"销售统计" withFont:20];
     
     _dateArray=@[@"全部",@"本月",@"本周",@"本日"];
-    
-    _dataStr=@"0";
+#warning  _dataStr改成0
+    _dataStr=@"all";
     
     _starTimeStr=@"0";
     
@@ -83,8 +83,6 @@
     [self setupViewsAndAutolayout];
     
     [self setTableviewSeparatorInset];
-    
-//    [self getStatusFromNetWork];
     
     [self setCalendarButton];
 
@@ -128,7 +126,6 @@
 }
 
 
-
 #pragma mark - Web Service
 -(void)getSalesListFromNetWork
 {
@@ -154,14 +151,9 @@
             if ([_typeStr isEqualToString:@"takeout"])
             {
                 NSArray* tempArr=[SalesModule objectArrayWithKeyValuesArray:[param[@"obj"] objectForKey:@"result"]];
-                
-                [self.recordArray removeAllObjects];
                 [self.recordArray addObjectsFromArray:tempArr];
-                
-                
                 NSString* countNum=[param[@"obj"] objectForKey:@"count"];
                 NSString* totalPrice=[param[@"obj"] objectForKey:@"sum"];
-                
                 /**
                  *  添加透视图
                  */
@@ -171,13 +163,10 @@
                 [self.saleTableView setTableHeaderView:headView];
                 
                 [self.saleTableView reloadData];
-
-                
             }
             else
             {
                 NSArray* temp=[GroupSaleModule objectArrayWithKeyValuesArray:[param[@"obj"] objectForKey:@"result"]];
-                [self.recordArray removeAllObjects];
                 [self.recordArray addObjectsFromArray:temp];
                 
                 
@@ -186,8 +175,41 @@
                 [self.saleTableView reloadData];
 
             }
-            
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:param[@"message"]];
+        }
+    } andErrorBlock:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
+    }];
+    [self get999SalesListFromNetWork];
+}
+-(void)get999SalesListFromNetWork
+{
+#warning 12.8 修复当typeStr为空时，程序会崩溃。 by CC
+    if (_typeStr == nil || [_typeStr isEqualToString:@""] == YES) {
+        [SVProgressHUD showErrorWithStatus:@"暂无数据"];
+        [self.saleTableView headerEndRefreshing];// 结束刷新状态
+        return;
+    }
+    NSDictionary* dict=@{
+                         @"app_key":SalesStates,
+                         @"record_type":_typeStr,
+                         @"shop_id":userDefault(userUid),
+                         @"time_type":_dataStr,
+                         };
+    NSLog(@"dict:%@",dict);
+    [Base64Tool postSomethingToServe:SalesStates andParams:dict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
+        if ([param[@"code"] integerValue]==200)
+        {
+            [SVProgressHUD showSuccessWithStatus:param[@"message"]];
 
+                NSArray* temp=[GroupSaleModule objectArrayWithKeyValuesArray:[param[@"obj"] objectForKey:@"result"]];
+                [self.recordArray addObjectsFromArray:temp];
+                [self.saleTableView setTableHeaderView:nil];
+                
+                [self.saleTableView reloadData];
         }
         else
         {
@@ -198,7 +220,7 @@
     }];
     
     [self.saleTableView headerEndRefreshing];
-    
+
 }
 
 
@@ -207,7 +229,6 @@
     
     [self.productTypeArray removeAllObjects];
     [self.saleTableView reloadData];
-    
     NSDictionary * dict=@{
                           @"app_key":shopStatus,
                           @"shop_id":userDefault(userUid)
@@ -230,14 +251,15 @@
                         [self.productTypeArray addObject:key];
                     }
                 }
+                for (NSDictionary *dic in [[NSUserDefaults standardUserDefaults] objectForKey:SHANGJIAQUANXIAN]) {
+                    [self.productTypeArray addObject:[dic objectForKey:@"type_value"]];
+                }
             }
             [self createDropDownMenu];
             
             _typeStr=[self.typeDict objectForKey:self.productTypeArray[0]];
             
             [self.saleTableView headerBeginRefreshing];
-//            NSLog(@"%@", self.productTypeArray);
-//            [self getSalesListFromNetWork];
             
         }
         else
@@ -248,6 +270,7 @@
     } andErrorBlock:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"请检查网络连接"];
     }];
+
 }
 
 
@@ -323,7 +346,6 @@
     }
     
     [self.saleTableView headerBeginRefreshing];
-    
 }
 
 
@@ -359,7 +381,7 @@
         cell.OrderOrPhoneNumLabel.text=[NSString stringWithFormat:@"订单号:%@",module.order_id];
         return cell;
     }
-    else if([_typeStr isEqualToString:@"group"])
+    else
     {
         GroupSalesTableViewCell* cell=[GroupSalesTableViewCell cellWithTableView:tableView];
         
@@ -396,11 +418,6 @@
         
         return cell;
     }
-    else
-    {
-        UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"asdf"];
-        return cell;
-    }
  
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -417,6 +434,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"%@",self.recordArray);
     return self.recordArray.count;
 }
 
@@ -429,12 +447,12 @@
         tdv.web_url=module.message_url;
         [self.navigationController pushViewController:tdv animated:YES];
     }
-    else if([_typeStr isEqualToString:@"group"])
+    else
     {
         GroupSaleModule* module=[self.recordArray objectAtIndex:indexPath.row];
         SaleRecordViewController* srvc=[[SaleRecordViewController alloc]init];
         srvc.postDict=@{
-                           @"app_key":ORDER_INFO,
+                           @"app_key":SalesInfo,
                            @"record_type":_typeStr,
                            @"order_id":module.group_id,
                            @"time_type":_dataStr,
@@ -460,24 +478,24 @@
     
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)])
-    {
-        
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-        
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)])
-    {
-        
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-        
-    }
-    
-    
-}
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    if ([cell respondsToSelector:@selector(setSeparatorInset:)])
+//    {
+//        
+//        [cell setSeparatorInset:UIEdgeInsetsZero];
+//        
+//    }
+//    if ([cell respondsToSelector:@selector(setLayoutMargins:)])
+//    {
+//        
+//        [cell setLayoutMargins:UIEdgeInsetsZero];
+//        
+//    }
+//    
+//    
+//}
 
 #pragma mark - Property Accessor
 -(UITableView *)saleTableView
@@ -491,10 +509,16 @@
         
         __block id weakSelf=self;
         [_saleTableView addHeaderWithCallback:^{
+            [weakSelf removeRecordObjects];
             [weakSelf getSalesListFromNetWork];
+            
         }];
     }
     return _saleTableView;
+}
+
+- (void)removeRecordObjects{
+    [self.recordArray removeAllObjects];
 }
 
 -(NSMutableArray *)recordArray
@@ -525,18 +549,21 @@
     return _productTypeArray;
 }
 
--(NSDictionary *)typeDict
+-(NSMutableDictionary *)typeDict
 {
     if (!_typeDict)
     {
-        _typeDict=@{
+        _typeDict=[NSMutableDictionary dictionaryWithDictionary:@{
                     @"团购":@"group",
                     @"优惠券":@"spike",
                     @"外卖":@"takeout",
                     @"订座":@"seat",
                     @"酒店":@"hotel",
                     @"活动":@"activity"
-                    };
+                    }];
+        for (NSDictionary *dic in [[NSUserDefaults standardUserDefaults]objectForKey:SHANGJIAQUANXIAN]) {
+            [_typeDict setObject:[dic objectForKey:@"type_name"] forKey:[dic objectForKey:@"type_value"]];
+        }
     }
     return _typeDict;
 }

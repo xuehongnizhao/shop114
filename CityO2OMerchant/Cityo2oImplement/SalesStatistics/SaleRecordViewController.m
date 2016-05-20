@@ -49,12 +49,12 @@
 #pragma mark - webService
 -(void)getSaleInfoFromNetWork
 {
-  [Base64Tool postSomethingToServe:ORDER_INFO andParams:self.postDict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
+  [Base64Tool postSomethingToServe:[self.postDict objectForKey:@"app_key"] andParams:self.postDict isBase64:[IS_USE_BASE64 boolValue] CompletionBlock:^(id param) {
       if ([param[@"code"] integerValue]==200)
       {
           [SVProgressHUD showSuccessWithStatus:param[@"message"]];
-          
-          NSArray* tempArr=[GroupDetailModule objectArrayWithKeyValuesArray:param[@"obj"]];
+#pragma mark --- 2016.5 删除result
+          NSArray* tempArr=[GroupDetailModule objectArrayWithKeyValuesArray:[param[@"obj"] objectForKey:@"result"]];
           [self.recordArray removeAllObjects];
           [self.recordArray addObjectsFromArray:tempArr];
           [self.groupTableView reloadData];

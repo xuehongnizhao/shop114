@@ -138,5 +138,17 @@
  */
 
 #define ProcessedOrders      connect_url(@"as_order_proce")
+/**
+ *  @author zq, 16-05-19 16:05:18
+ *
+ *  999销售统计
+ */
+#define SalesStates         connect_url(@"as_sales_stat")
+/**
+ *  @author zq, 16-05-19 16:05:11
+ *
+ *  999销售统计详情
+ */
+#define SalesInfo           connect_url(@"as_sales_info")
 
 #endif
