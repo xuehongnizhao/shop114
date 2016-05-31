@@ -197,7 +197,7 @@
 
         case 0:{
             NSDictionary *dic=self.productTypeArray[indexPath.row];
-            return [dic allValues][0];
+            return [dic objectForKey:@"type_value"];
         }
           
             break;
@@ -263,9 +263,6 @@
     
 }
 
-
-
-
 #pragma mark - RMDAteSelectionViewController Delegates
 - (void)dateSelectionViewController:(RMDateSelectionViewController *)vc didSelectDate:(NSDate *)aDate {
     //NSLog(@"Successfully selected date: %@", aDate);
@@ -306,7 +303,7 @@
 }
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"   共有%ld条记录",self.recordArray.count];
+    return [NSString stringWithFormat:@"   共有%d条记录",self.recordArray.count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

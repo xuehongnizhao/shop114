@@ -562,7 +562,7 @@
                     @"活动":@"activity"
                     }];
         for (NSDictionary *dic in [[NSUserDefaults standardUserDefaults]objectForKey:SHANGJIAQUANXIAN]) {
-            [_typeDict setObject:[dic objectForKey:@"type_name"] forKey:[dic objectForKey:@"type_value"]];
+            [_typeDict setObject:[dic objectForKey:@"type_value"] forKey:[dic objectForKey:@"type_name"]];
         }
     }
     return _typeDict;

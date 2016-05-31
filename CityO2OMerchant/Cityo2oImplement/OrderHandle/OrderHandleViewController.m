@@ -69,7 +69,7 @@ static NSString* _typeStr=@"1";
     [_defaultImageView autoSetDimensionsToSize:CGSizeMake(220, 226)];
 }
 
-
+#pragma mark --- 已处理订单新订单
 #pragma mark - WebService
 -(void)getProcessedOrdersListFromNetWork
 {
