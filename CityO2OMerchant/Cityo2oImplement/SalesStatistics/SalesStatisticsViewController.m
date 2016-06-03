@@ -223,7 +223,7 @@
 
 }
 
-
+#pragma mark --- 这里有个问题 就是没有团购或者外卖权限的时候点击销售统计会崩溃
 -(void)getStatusFromNetWork
 {
     
@@ -242,8 +242,10 @@
                 [SVProgressHUD showErrorWithStatus:@"没有销售记录"];
                 return ;
             }
+
             for (NSString* statusStr in [tempStr componentsSeparatedByString:@","])
             {
+                
                 for (NSString* key in [self.typeDict allKeys])
                 {
                     if ([[self.typeDict objectForKey:key] isEqualToString:statusStr]&&([statusStr isEqualToString:@"group"]||[statusStr isEqualToString:@"takeout"]))
@@ -252,8 +254,11 @@
                     }
                 }
                 for (NSDictionary *dic in [[NSUserDefaults standardUserDefaults] objectForKey:SHANGJIAQUANXIAN]) {
-                    [self.productTypeArray addObject:[dic objectForKey:@"type_value"]];
-                }
+                    if (dic.count>0) {
+                        [self.productTypeArray addObject:[dic objectForKey:@"type_value"]];
+
+                    }
+                                    }
             }
             [self createDropDownMenu];
             
@@ -318,6 +323,7 @@
 }
 
 - (NSString *)menu:(DOPDropDownMenu *)menu titleForRowAtIndexPath:(DOPIndexPath *)indexPath {
+    
     switch (indexPath.column) {
         case 0: return self.dateArray[indexPath.row];
             break;
@@ -562,8 +568,11 @@
                     @"活动":@"activity"
                     }];
         for (NSDictionary *dic in [[NSUserDefaults standardUserDefaults]objectForKey:SHANGJIAQUANXIAN]) {
-            [_typeDict setObject:[dic objectForKey:@"type_value"] forKey:[dic objectForKey:@"type_name"]];
-        }
+            if (dic.count>0) {
+                [_typeDict setObject:[dic objectForKey:@"type_value"] forKey:[dic objectForKey:@"type_name"]];
+
+            }
+                   }
     }
     return _typeDict;
 }
