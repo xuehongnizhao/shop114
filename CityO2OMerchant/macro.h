@@ -64,7 +64,10 @@ __LINE__, __func__);                                                        \
 fprintf(stderr, "-------\n");                                               \
 } while (0)
 
-
+//设置比例  依据iphone5为基准
+#define Balance_Width SCREEN_WIDTH/320.0
+//#define Balance_Heith SCREEN_HEIGHT/480
+#define Balance_Heith (SCREEN_HEIGHT < 568.0 ? SCREEN_HEIGHT /480.0 : SCREEN_HEIGHT /568.0)
 
 /**
  * 简单打印调试信息

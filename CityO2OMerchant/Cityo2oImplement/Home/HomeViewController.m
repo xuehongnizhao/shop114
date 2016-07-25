@@ -14,7 +14,7 @@
 #import "ConfirmResultViewController.h"
 #import "ConfrimRecordViewController.h"
 #import "ScanQRCodeViewController.h"
-
+#import "QuickPayViewController.h"
 @interface HomeViewController ()<SkyKeyboardDelegate,ScanQRCodeViewControllerDelegate>
 
 @property(nonatomic,strong)UIView* textFieldBackgroudView;
@@ -107,10 +107,14 @@
     rightButton.titleLabel.font=[UIFont systemFontOfSize:14];
     [rightButton setTitle:@"扫描" forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(scanQRcode) forControlEvents:UIControlEventTouchUpInside];
+#warning nonononono
+    [rightButton addTarget:self action:@selector(quickPay) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:rightButton];
 }
-
+- (void)quickPay{
+    QuickPayViewController *firVC=[[QuickPayViewController alloc]init];
+    [self.navigationController pushViewController:firVC animated:YES];
+}
 -(void)scanQRcode
 {
     ScanQRCodeViewController* svc=[[ScanQRCodeViewController alloc]init];

@@ -99,38 +99,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CityO2OMerchant/Cityo2oImplement/SellerCenter/OrderRecordViewController.m"
-            timestampString = "486366701.995882"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "-getRecordListFromNetWork"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CityO2OMerchant/Cityo2oImplement/SellerCenter/OrderRecordViewController.m"
-            timestampString = "486366705.459953"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "-getShopStatusFromNetWork"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "CityO2OMerchant/Cityo2oImplement/SellerCenter/RevisPassViewController.m"
             timestampString = "486366711.93166"
             startingColumnNumber = "9223372036854775807"
@@ -164,7 +132,7 @@
                   moduleName = "CityO2OMerchant"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/shop114/CityO2OMerchant/Cityo2oImplement/SalesStatistics/SaleRecordViewController.m"
-                  timestampString = "486611478.49849"
+                  timestampString = "491121436.234461"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "52"
@@ -179,7 +147,7 @@
                   moduleName = "CityO2OMerchant"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/shop114/CityO2OMerchant/Cityo2oImplement/SalesStatistics/SaleRecordViewController.m"
-                  timestampString = "486611478.4986"
+                  timestampString = "491121436.234573"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "53"

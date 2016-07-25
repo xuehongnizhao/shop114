@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04A0B1471D41F44000FE03B9 /* QuickPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0B1461D41F44000FE03B9 /* QuickPayViewController.m */; };
 		33130ADA1AB6B47F0071E2FF /* OrderRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33130AD91AB6B47F0071E2FF /* OrderRecordViewController.m */; };
 		33130ADF1AB6B9C90071E2FF /* OrderRecordMoudle.m in Sources */ = {isa = PBXBuildFile; fileRef = 33130ADE1AB6B9C90071E2FF /* OrderRecordMoudle.m */; };
 		33130AE31AB6BB0A0071E2FF /* OrderRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33130AE11AB6BB0A0071E2FF /* OrderRecordTableViewCell.m */; };
@@ -137,6 +138,8 @@
 
 /* Begin PBXFileReference section */
 		02B728EE07C4D4F478FF4F78 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		04A0B1451D41F44000FE03B9 /* QuickPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickPayViewController.h; sourceTree = "<group>"; };
+		04A0B1461D41F44000FE03B9 /* QuickPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickPayViewController.m; sourceTree = "<group>"; };
 		055DE39ACD31348305444D62 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		33130AD81AB6B47F0071E2FF /* OrderRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderRecordViewController.h; sourceTree = "<group>"; };
 		33130AD91AB6B47F0071E2FF /* OrderRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderRecordViewController.m; sourceTree = "<group>"; };
@@ -757,6 +760,8 @@
 				331728641AAEA0D00037CAAC /* ConfirmResultViewController.h */,
 				331728651AAEA0D00037CAAC /* ConfirmResultViewController.m */,
 				331728661AAEA0D00037CAAC /* ConfirmResultViewController.xib */,
+				04A0B1451D41F44000FE03B9 /* QuickPayViewController.h */,
+				04A0B1461D41F44000FE03B9 /* QuickPayViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1061,6 +1066,7 @@
 				33A07E321AAD7005003065D3 /* MJTypeEncoding.m in Sources */,
 				33A07E4E1AAD72CC003065D3 /* OrderHandleViewController.m in Sources */,
 				33A07E301AAD7005003065D3 /* MJMethod.m in Sources */,
+				04A0B1471D41F44000FE03B9 /* QuickPayViewController.m in Sources */,
 				337368991AB00DFE00E10A61 /* GroupRecordTableViewCell.m in Sources */,
 				33130ADF1AB6B9C90071E2FF /* OrderRecordMoudle.m in Sources */,
 				33A07E351AAD7005003065D3 /* NSObject+MJMember.m in Sources */,
